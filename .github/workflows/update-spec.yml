@@ -71,13 +71,22 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           short="${COMMIT:0:7}"
+          number="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')"
 
           # CI requires a changelog entry on every PR. A regeneration can add
           # operations or change existing ones, so it starts as a minor bump
           # for the reviewer to raise to major when a change breaks callers.
+          # The branch is rebuilt from main on every run, so a major bump the
+          # reviewer set on the open PR is carried over rather than lost.
+          bump="minor"
+          if [ -n "$number" ] \
+            && git fetch origin "$BRANCH" 2>/dev/null \
+            && git show "FETCH_HEAD:$ENTRY_PATH" 2>/dev/null | grep -q 'bump = "major"'; then
+            bump="major"
+          fi
           cat > "$ENTRY_PATH" <<EOF
           return {
-          	bump = "minor",
+          	bump = "$bump",
           	category = "Changes",
           	summary = "Regenerate the clients from Roblox's Open Cloud spec at Roblox/creator-docs@$short.",
           }
@@ -92,7 +101,6 @@ jobs:
           # The branch belongs to this job and is rebuilt from main on every
           # run. When the open PR already holds the same clients on top of the
           # current main, pushing again would only rerun its CI.
-          number="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')"
           if [ -n "$number" ] \
             && git fetch origin "$BRANCH" 2>/dev/null \
             && git merge-base --is-ancestor origin/main FETCH_HEAD \

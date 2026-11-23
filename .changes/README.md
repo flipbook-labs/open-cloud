@@ -10,12 +10,14 @@ Create a Luau file in this folder that returns the entry's fields. Name the file
 return {
 	bump = "minor",
 	category = "Features",
-	summary = "Add a `greet` function that returns a greeting for a name.",
+	kind = "Clients",
+	summary = "Add a generated client for the Badges API.",
 }
 ```
 
 - **`bump`** (required): how far to move the version, `"major"`, `"minor"`, or `"patch"`.
 - **`category`** (required): the changelog heading the entry appears under. The headings are `Features`, `Changes`, `Fixes`, `Dependencies`, and `Internal`, in the order `categories` sets in [`changewrite.luau`](../changewrite.luau). Dependencies and Internal start collapsed in GitHub release notes.
+- **`kind`** (required): what the change touches, shown as a chip in front of the entry. Use `Clients` for changes to the generated clients, including regenerating them, and `Tooling` for scripts, workflows, and repository setup. The kinds are set in `changewrite.luau`.
 - **`summary`** (required): the changelog line, written for someone reading the changelog without the pull request. Keep it to one sentence of at most 140 characters. `changewrite check` enforces both.
 - **`body`** (optional): more detail in Markdown, shown collapsed under the summary.
 

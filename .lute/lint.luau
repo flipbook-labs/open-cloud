@@ -3,10 +3,28 @@ local process = require("@std/process")
 
 local run = require("./lib/run")
 
-local PATHS = { "init.luau", "src", ".lute" }
+-- Generated clients are left out of `CodeQuality.lint`, since their field
+-- names and enums come from Roblox's spec. StyLua still checks them, because
+-- `lute run generate` formats them before they're committed.
+local LINTED_PATHS = {
+	".lute",
+	"tests",
+	"pkg.luau",
+	"workspace/assets/pkg.luau",
+	"workspace/luau-execution/pkg.luau",
+	"workspace/places/pkg.luau",
+}
 
-CodeQuality.lint(PATHS)
-run({ "stylua", "--check", table.unpack(PATHS) })
+CodeQuality.lint(LINTED_PATHS)
+run({
+	"stylua",
+	"--check",
+	".lute",
+	"tests",
+	"pkg.luau",
+	"workspace",
+	"spec/source.luau",
+})
 
 -- Luau files use the `.luau` extension. Asking git covers every tracked and
 -- untracked file while skipping what `.gitignore` excludes, like `.lpm/`.

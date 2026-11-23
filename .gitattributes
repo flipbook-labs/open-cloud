@@ -1,4 +1,7 @@
-# Apps and CLIs commit `pkg.lock.luau`, which `lute pkg install` writes.
-# Marking it generated collapses its diff in pull requests and leaves it out of
-# language stats.
-pkg.lock.luau linguist-generated=true
+# `lute run generate` writes each member's client and `lute run update-spec`
+# copies Roblox's spec, so GitHub collapses their diffs in pull requests and
+# leaves them out of language stats.
+workspace/*/init.luau linguist-generated=true
+workspace/*/types.luau linguist-generated=true
+spec/openapi.json linguist-generated=true
+spec/source.luau linguist-generated=true

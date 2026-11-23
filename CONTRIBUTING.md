@@ -34,7 +34,7 @@ lute run update-spec
 lute run generate
 ```
 
-`update-spec` copies the newest spec from Roblox's creator-docs repository into `spec/` and records the commit it came from. `generate` runs OpenApiLuau over that snapshot for every package listed in `.lute/generate.luau`. The Update Spec workflow does both every week and opens a pull request when the clients change.
+`update-spec` pins `spec/source.luau` to the newest creator-docs commit that changed Roblox's spec. `generate` downloads the spec at that commit and runs OpenApiLuau over it for every package listed in `.lute/generate.luau`, so the same pin always generates the same clients. The Update Spec workflow does both every week and opens a pull request when the clients change.
 
 To add a service, add its folder and tag to `.lute/generate.luau`, give it a `pkg.luau` like the others, and add it to the root `pkg.luau`.
 

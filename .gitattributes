@@ -1,7 +1,6 @@
 # `lute run generate` writes each member's client and `lute run update-spec`
-# copies Roblox's spec, so GitHub collapses their diffs in pull requests and
+# writes the spec pin, so GitHub collapses their diffs in pull requests and
 # leaves them out of language stats.
 workspace/*/init.luau linguist-generated=true
 workspace/*/types.luau linguist-generated=true
-spec/openapi.json linguist-generated=true
 spec/source.luau linguist-generated=true

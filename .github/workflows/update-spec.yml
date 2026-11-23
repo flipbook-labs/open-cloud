@@ -1,8 +1,9 @@
 name: Update Spec
 
-# The clients are generated from a snapshot of Roblox's Open Cloud spec in
-# spec/. This copies the newest spec every week, regenerates the clients, and
-# opens a PR, or updates the open one, when a client changes.
+# The clients are generated from Roblox's Open Cloud spec at the creator-docs
+# commit pinned in spec/source.luau. This moves the pin to the newest spec
+# every week, regenerates the clients, and opens a PR, or updates the open one,
+# when a client changes.
 
 on:
   schedule:
@@ -43,7 +44,7 @@ jobs:
         with:
           version: v1.2.0
 
-      - name: Update the spec
+      - name: Pin the newest spec
         run: lute run update-spec
 
       - name: Regenerate the clients
@@ -102,7 +103,7 @@ jobs:
           git push --force origin "$BRANCH"
 
           cat > "$RUNNER_TEMP/body.md" <<EOF
-          Roblox updated its Open Cloud spec in [Roblox/creator-docs@$short](https://github.com/Roblox/creator-docs/commit/$COMMIT), and the change reaches at least one client here. This PR copies the new spec into \`spec/\` and regenerates the clients with \`lute run generate\`.
+          Roblox updated its Open Cloud spec in [Roblox/creator-docs@$short](https://github.com/Roblox/creator-docs/commit/$COMMIT), and the change reaches at least one client here. This PR moves the pin in \`spec/source.luau\` to that commit and regenerates the clients with \`lute run generate\`.
 
           Check the client diffs for removed operations or changed fields. If a change breaks callers, raise the changelog entry's bump to \`major\`.
 

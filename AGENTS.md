@@ -1,6 +1,6 @@
 # Agent guide
 
-OpenCloud publishes typed Luau clients for Roblox Open Cloud, one Lute package per service under `workspace/`. OpenApiLuau generates every client from the spec snapshot in `spec/`, so the generated `init.luau` and `types.luau` files are never edited by hand: change the generator in flipbook-labs/openapi-luau, or the snapshot with `lute run update-spec`, and run `lute run generate`.
+OpenCloud publishes typed Luau clients for Roblox Open Cloud, one Lute package per service under `workspace/`. OpenApiLuau generates every client from Roblox's spec at the creator-docs commit pinned in `spec/source.luau`, so the generated `init.luau` and `types.luau` files are never edited by hand: change the generator in flipbook-labs/openapi-luau, or the pin with `lute run update-spec`, and run `lute run generate`.
 
 This file is the entry point for any agent working in the repository. It routes you to the shared skills library and the repository's own setup.
 

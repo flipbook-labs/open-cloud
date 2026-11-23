@@ -4,7 +4,7 @@ local root = require("../../pkg")
 
 return {
 	package = {
-		name = "luau-execution",
+		name = "LuauExecution",
 		version = root.version,
 		files = {
 			"/init.luau",

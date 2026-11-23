@@ -1,6 +1,6 @@
 # Agent guide
 
-<!-- Replace this comment with one paragraph: what this repository is and what it ships. -->
+OpenCloud publishes typed Luau clients for Roblox Open Cloud, one Lute package per service under `workspace/`. OpenApiLuau generates every client from Roblox's spec at the creator-docs commit pinned in `spec/source.luau`, so the generated `init.luau` and `types.luau` files are never edited by hand: change the generator in flipbook-labs/openapi-luau, or the pin with `lute run update-spec`, and run `lute run generate`.
 
 This file is the entry point for any agent working in the repository. It routes you to the shared skills library and the repository's own setup.
 
@@ -33,5 +33,5 @@ When your work contradicts a skill, such as a renamed symbol or a bug it still c
 ## Repository specifics
 
 - `lute run check` runs the same checks as CI. [CONTRIBUTING.md](CONTRIBUTING.md) lists them.
-- Tests are `*.spec.luau` files next to the code they cover.
+- Tests live in `tests/`, since the generated folders hold only generated code and a manifest.
 - Each pull request adds one `.changes/` entry. [`.changes/README.md`](.changes/README.md) lists the fields.

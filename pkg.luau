@@ -31,7 +31,7 @@ return {
 		},
 		dev_dependencies = {
 			["agent-skills"] = {
-				rev = "v0.8.0",
+				rev = "v0.9.0",
 				sourceKind = "github",
 				source = "https://github.com/flipbook-labs/agent-skills",
 			},

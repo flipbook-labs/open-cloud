@@ -6,7 +6,7 @@ return {
 		Tooling = { text = "Tooling", color = "#6e7781" },
 	},
 	version = {
-		current = "0.1.0",
+		current = "0.2.0",
 		mirror = {
 			{ file = "pkg.luau" },
 			{ file = "README.md", pattern = 'target = "workspace/luau%-execution",%s+rev = "v([%d%.]+)"' },

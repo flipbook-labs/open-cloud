@@ -14,7 +14,7 @@ dependencies = {
 		sourceKind = "github",
 		source = "https://github.com/flipbook-labs/open-cloud",
 		target = "workspace/luau-execution",
-		rev = "v0.1.0",
+		rev = "v0.2.0",
 	},
 	["openapi-lute-transport"] = {
 		sourceKind = "github",
@@ -34,7 +34,7 @@ Create a client with your API key, then call an operation. This runs a script in
 ```luau
 local process = require("@std/process")
 
-local LuauExecution = require("@lpm/luau-execution@v0.1.0")
+local LuauExecution = require("@lpm/luau-execution@v0.2.0")
 local OpenApiLuteTransport = require("@lpm/openapi-lute-transport@v0.1.0")
 local OpenApiRuntime = require("@lpm/openapi-runtime@v0.1.0")
 

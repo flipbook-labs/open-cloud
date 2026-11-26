@@ -381,8 +381,6 @@ export type GetAssetDeliveryApiV1AssetIdParams = {
 --- Returns an object containing a `location` property which is a temporary CDN URL for the asset content. All asset types are supported.
 --- You should request that URL with the `Accept-Encoding: gzip` header and decompress the result if the response is gzipped. If you are using cURL, the `--compressed` flag will automate these steps for you.
 --- This endpoint is expected to be called with API key authentication through `apis.roblox.com/asset-delivery-api/v1/assetId/{assetId}`.
---- While you are able to make requests to this endpoint with Cookie authentication via `assetdelivery.roblox.com/v1/openCloud/assetId/{assetId}`, we highly discourage use this way.
---- Expect unannounced removal of this second route in the future.
 ---
 --- https://create.roblox.com/docs/cloud/reference/features/assets#get_asset_delivery_api_v1_assetId__assetId_
 ---
@@ -443,8 +441,6 @@ export type GetAssetDeliveryApiV1AssetIdVersionParams = {
 ---
 --- Refer to the assetId endpoint for details on usage.
 --- This endpoint is expected to be called with API key authentication through `apis.roblox.com/asset-delivery-api/v1/assetId/{assetId}/version/{versionNumber}`.
---- While you are able to make requests to this endpoint with Cookie authentication via `assetdelivery.roblox.com/v1/openCloud/assetId/{assetId}/version/{versionNumber}`, we highly discourage use this way.
---- Expect unannounced removal of this second route in the future.
 ---
 --- https://create.roblox.com/docs/cloud/reference/features/assets#get_asset_delivery_api_v1_assetId__assetId__version__versionNumber_
 ---

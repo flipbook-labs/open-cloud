@@ -113,4 +113,20 @@ test.suite("generated clients", function(suite)
 		assert.eq(requests[1].url, "https://apis.roblox.com/cloud/v2/universes/1/places/2")
 		assert.eq(place.path, "universes/1/places/2")
 	end)
+
+	suite:case("places publishes a place file as the raw request body", function(assert)
+		local client, requests = createRecordingClient('{"versionNumber":3}')
+
+		Places.createPlaceVersionApiKey(client, {
+			universeId = 1,
+			placeId = 2,
+			versionType = "Published",
+			body = "PLACE",
+		})
+
+		assert.eq(requests[1].method, "POST")
+		assert.eq(requests[1].url, "https://apis.roblox.com/universes/v1/1/places/2/versions?versionType=Published")
+		assert.eq(requests[1].headers["Content-Type"], "application/octet-stream")
+		assert.eq(requests[1].body, "PLACE")
+	end)
 end)

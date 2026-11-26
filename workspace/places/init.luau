@@ -447,14 +447,21 @@ local function updatePlaceVersionNotes(
 end
 
 export type CreatePlaceVersionApiKeyParams = {
+	--- The identifier of the experience in which you want to publish your place to. You can [copy your experience's Universe ID](/cloud/guides/usage-place-publishing.md#publishing-a-place) on **Creator Dashboard**.
 	universeId: number,
+	--- The identifier of your place. See [Publishing places with API keys](/cloud/guides/usage-place-publishing.md) on obtaining a Place ID.
 	placeId: number,
+	--- Can only be either:
+	--- - `Saved`: the place file should be saved, but not published.
+	--- - `Published`: the place file should be saved and published.
 	versionType: string?,
-	isOldVersionAllowed: boolean?,
-	shouldForceRestart: boolean?,
+	--- The place file to publish: an RBXLX file as `application/xml` or an RBXL file as `application/octet-stream`.
+	body: string,
 }
 
---- Invokes Roblox.UniversesApi.CreatePlaceVersionApiKeyOperation operation.
+--- Publish a Place
+---
+--- Publish a new place or update an existing place with a new version. Provide a RBXL or RBXLX file in the data-binary.
 ---
 --- https://create.roblox.com/docs/cloud/reference/features/places#Places_CreatePlaceVersionApiKey
 ---
@@ -472,8 +479,11 @@ local function createPlaceVersionApiKey(
 		},
 		query = {
 			versionType = args.versionType,
-			isOldVersionAllowed = args.isOldVersionAllowed,
-			shouldForceRestart = args.shouldForceRestart,
+		},
+		body = {
+			kind = "raw",
+			contentType = "application/octet-stream",
+			content = args.body,
 		},
 		responseKind = OpenApiRuntime.ResponseKind.Json,
 	}) :: types.CreatePlaceVersionOperationResponse
